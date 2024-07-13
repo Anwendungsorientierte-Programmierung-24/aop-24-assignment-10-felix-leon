@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
 
 class CanvasTile extends StatelessWidget {
-  Color _color = Colors.green;
+  late int _ID;
+  late Color _color;
+  late void Function (int) _onSelected;
+  CanvasTile({void Function (int)? onSelected, int ID = 0, Color color = Colors.green}){
+    _color = color;
+    _ID = ID;
+    _onSelected = onSelected!;
+  }
+
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
@@ -9,7 +17,7 @@ class CanvasTile extends StatelessWidget {
             shape: BeveledRectangleBorder(), backgroundColor: _color),
         child: null,
         onPressed: () {
-          print("Pressed");
+          _onSelected(_ID);
         });
   }
 }
