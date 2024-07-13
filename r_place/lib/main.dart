@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:r_place/Canvas/canvas_display.dart';
 
 void main() {
-  runApp(const r_place());
+  runApp(r_place());
 }
 
-class r_place extends StatelesWidget{
+class r_place extends StatelessWidget{
   @override 
-  Widget build (Buildcontext context){
+  Widget build (BuildContext context){
     return MaterialApp(
-      home:Placeholder();
-    )
+      home:CanvasDisplay()
+    );
   }
 }
