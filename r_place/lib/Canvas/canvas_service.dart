@@ -1,39 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:r_place/Canvas/canvas_display.dart';
+import 'package:r_place/Canvas/canvas_tile.dart';
 
-class CanvasService {
+class CanvasService extends StatefulWidget {
+  @override
+  State<CanvasService> createState() => _CanvasServiceState();
+}
+
+class _CanvasServiceState extends State<CanvasService> {
   //attributes for Canvas Service
-  late List <Container> _grid = List.filled(100, Container(decoration: BoxDecoration(color: Colors.green)));
-  final int _size = 100;
+  late List<CanvasTile> _grid = List.filled(
+      100, CanvasTile());
 
-  //Attributes for CanvasDisplay
-  late CanvasDisplay _cDisp;
-
-
-//Canvas Service Contructor
-  CanvasService (){
-    _initiateGrid();
+  @override
+  Widget build(BuildContext context) {
+    return CanvasDisplay(_grid);
   }
-
-  _initiateGrid () async{
-    await _createGrid();
-  }
-  
-  _createGrid() {
-      for (int x = 0; x < _size; x++){
-        _grid.add(Container(decoration: BoxDecoration(color: Colors.green)));
-      }
-  }
-
-  //Getter for Canvas Display
-  Widget getCanvas(){
-    _cDisp = new CanvasDisplay(_grid);
-    return _cDisp;
-  }
-
-  //changing Color of Pixel
-  changeColor (int index, Color color){
-    _grid[index] = Container(decoration: BoxDecoration(color: color));
-  }
-
 }

@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:r_place/Canvas/canvas_service.dart';
+import 'package:r_place/Canvas/canvas_tile.dart';
 
 class CanvasDisplay extends StatefulWidget {
-  late List <Container> _grid;
+  late List <CanvasTile> _grid;
 
-  CanvasDisplay (List <Container> grid){
+  CanvasDisplay (List <CanvasTile> grid){
     _grid = grid;
   }
-
 
   @override
   State<CanvasDisplay> createState() => _CanvasDisplayState();
