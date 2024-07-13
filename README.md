@@ -80,19 +80,11 @@ Die Aufgabenverteilung im Team muss im folgenden Abschnitt dokumentiert werden.
 
 ## Dokumentation der Aufgabenverteilung
 
-Aufgaben Teammitglied 1: {Name hier einfügen}
-- {Aufgabe 1}
-- {Aufgabe 2}
-- {Aufgabe 3}
-- {Aufgabe 4}
-- {...}
+Aufgaben Teammitglied 1: Leon Maurer
+- LogIn
 
-Aufgaben Teammitglied 2: {Name hier einfügen}
-- {Aufgabe 1}
-- {Aufgabe 2}
-- {Aufgabe 3}
-- {Aufgabe 4}
-- {...}
+Aufgaben Teammitglied 2: Felix Vogelsang
+- Canvas
 
 
 ## Checkliste für das Übungsblatt
