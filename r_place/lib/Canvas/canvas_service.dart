@@ -11,7 +11,7 @@ class CanvasService extends StatefulWidget {
 class _CanvasServiceState extends State<CanvasService> {
   //attributes for Canvas Service
   //late List<CanvasTile> _grid = List.filled(100, CanvasTile());
-  final List <CanvasTile> _grid = List.generate(100, (index) => CanvasTile(ID: index, onSelected: upDateTile));
+  final List <CanvasTile> _grid = List.generate(100, (index) => CanvasTile(ID: index));
   Color _currentColor = Colors.white;
 
   @override
@@ -29,7 +29,7 @@ class _CanvasServiceState extends State<CanvasService> {
   //changing color of spesific tile
   upDateTile(int index){
     setState(() {
-      _grid[index] = CanvasTile(onSelected: upDateTile, ID: index, color: _currentColor);
+      _grid[index] = CanvasTile(ID: index, color: _currentColor);
     });
   }
 
@@ -37,6 +37,15 @@ class _CanvasServiceState extends State<CanvasService> {
   updateColor(Color color) {
     setState(() {
       _currentColor = color;
+    });
+  }
+
+  //giving onColorChange to every CanvasTile
+  void fillCanvasTiles(){
+    setState(() {
+      for (int i = 0; i < _grid.length; i++){
+        _grid[i].setOnSelected(upDateTile); 
+      }
     });
   }
 }

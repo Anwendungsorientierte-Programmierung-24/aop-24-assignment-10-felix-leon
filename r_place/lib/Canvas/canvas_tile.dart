@@ -4,10 +4,9 @@ class CanvasTile extends StatelessWidget {
   late int _ID;
   late Color _color;
   late void Function (int) _onSelected;
-  CanvasTile({void Function (int)? onSelected, int ID = 0, Color color = Colors.green}){
+  CanvasTile({int ID = 0, Color color = Colors.green}){
     _color = color;
     _ID = ID;
-    _onSelected = onSelected!;
   }
 
   @override
@@ -19,5 +18,10 @@ class CanvasTile extends StatelessWidget {
         onPressed: () {
           _onSelected(_ID);
         });
+  }
+
+  //setting canvas OnSelected Funktion
+  setOnSelected(void Function (int) onSelected){
+    	_onSelected = onSelected;
   }
 }
