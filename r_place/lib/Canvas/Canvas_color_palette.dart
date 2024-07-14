@@ -19,84 +19,84 @@ class _ColorPaletteState extends State<ColorPalette> {
 
         //white
         ElevatedButton(
-          style: ElevatedButton.styleFrom(backgroundColor: Colors.white),
+          style: ElevatedButton.styleFrom( shape: BeveledRectangleBorder(), backgroundColor: Colors.white),
           child: null,
           onPressed: (){
             widget._onColorChange(Colors.white);
           }),
           //yellow
         ElevatedButton(
-          style: ElevatedButton.styleFrom(backgroundColor: Colors.yellow),
+          style: ElevatedButton.styleFrom( shape: BeveledRectangleBorder(), backgroundColor: Colors.yellow),
           child: null,
           onPressed: (){
             widget._onColorChange(Colors.yellow);
           }),
           //pink
         ElevatedButton(
-          style: ElevatedButton.styleFrom(backgroundColor: Colors.pink),
+          style: ElevatedButton.styleFrom( shape: BeveledRectangleBorder(), backgroundColor: Colors.pink),
           child: null,
           onPressed: (){
             widget._onColorChange(Colors.pink);
           }),
           //red
         ElevatedButton(
-          style: ElevatedButton.styleFrom(backgroundColor: Colors.red),
+          style: ElevatedButton.styleFrom( shape: BeveledRectangleBorder(), backgroundColor: Colors.red),
           child: null,
           onPressed: (){
             widget._onColorChange(Colors.red);
           }),
           //brown
         ElevatedButton(
-          style: ElevatedButton.styleFrom(backgroundColor: Colors.brown),
+          style: ElevatedButton.styleFrom( shape: BeveledRectangleBorder(), backgroundColor: Colors.brown),
           child: null,
           onPressed: (){
             widget._onColorChange(Colors.brown);
           }),
           //purple
         ElevatedButton(
-          style: ElevatedButton.styleFrom(backgroundColor: Colors.purple),
+          style: ElevatedButton.styleFrom( shape: BeveledRectangleBorder(), backgroundColor: Colors.purple),
           child: null,
           onPressed: (){
             widget._onColorChange(Colors.purple);
           }),
           //green
         ElevatedButton(
-          style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
+          style: ElevatedButton.styleFrom( shape: BeveledRectangleBorder(), backgroundColor: Colors.green),
           child: null,
           onPressed: (){
             widget._onColorChange(Colors.green);
           }),
           //black
         ElevatedButton(
-          style: ElevatedButton.styleFrom(backgroundColor: Colors.black),
+          style: ElevatedButton.styleFrom( shape: BeveledRectangleBorder(), backgroundColor: Colors.black),
           child: null,
           onPressed: (){
             widget._onColorChange(Colors.black);
           }),
           //lightblue
         ElevatedButton(
-          style: ElevatedButton.styleFrom(backgroundColor: Colors.lightBlue),
+          style: ElevatedButton.styleFrom( shape: BeveledRectangleBorder(), backgroundColor: Colors.lightBlue),
           child: null,
           onPressed: (){
             widget._onColorChange(Colors.lightBlue);
           }),
           //blue
         ElevatedButton(
-          style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
+          style: ElevatedButton.styleFrom( shape: BeveledRectangleBorder(), backgroundColor: Colors.blue),
           child: null,
           onPressed: (){
             widget._onColorChange(Colors.blue);
           }),
           //orange
         ElevatedButton(
-          style: ElevatedButton.styleFrom(backgroundColor: Colors.orange),
+          style: ElevatedButton.styleFrom( shape: BeveledRectangleBorder(), backgroundColor: Colors.orange),
           child: null,
           onPressed: (){
             widget._onColorChange(Colors.orange);
           }),
           //grey
         ElevatedButton(
-          style: ElevatedButton.styleFrom(backgroundColor: Colors.grey),
+          style: ElevatedButton.styleFrom( shape: BeveledRectangleBorder(), backgroundColor: Colors.grey),
           child: null,
           onPressed: (){
             widget._onColorChange(Colors.grey);
