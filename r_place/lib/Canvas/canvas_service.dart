@@ -10,10 +10,8 @@ class CanvasService extends StatefulWidget {
 
 class _CanvasServiceState extends State<CanvasService> {
   //attributes for Canvas Service
-  //late List<CanvasTile> _grid = List.filled(100, CanvasTile());
   final List <CanvasTile> _grid = List.generate(100, (index) => CanvasTile(ID: index));
   Color _currentColor = Colors.white;
-  int _currentColorIndex = 0;
 
   @override
   void initState() {
@@ -24,6 +22,10 @@ class _CanvasServiceState extends State<CanvasService> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar( 
+        title: Text("Canvas", style: TextStyle(color: Colors.white),),
+        backgroundColor: Colors.black,
+      ),
       body: Column(
         children: [
           CanvasDisplay(_grid, upDateTile),

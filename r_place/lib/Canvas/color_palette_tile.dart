@@ -5,7 +5,6 @@ class ColorPaletteTile extends StatefulWidget {
   late Color _color;
   Color _borderColor = Colors.white;
   late void Function(Color) _onColorChange;
-  late void Function (int) _changeBorderColor;
 
   ColorPaletteTile(Color color) {
     _color = color;
@@ -14,9 +13,8 @@ class ColorPaletteTile extends StatefulWidget {
   State<StatefulWidget> createState() => _ColorPaletteTileState();
 
   //setting funktions for tiles
-  setFunctions(void Function(Color) onColorChange, void Function (int) changeBorderColor) {
+  setFunctions(void Function(Color) onColorChange) {
     _onColorChange = onColorChange;
-    _changeBorderColor = changeBorderColor;
   }
 
   //setting id
@@ -24,10 +22,11 @@ class ColorPaletteTile extends StatefulWidget {
     _id = id;
   }
 
-  //changing the bordercolor to show witch color is selected
-  setBorderColor(Color borderColor){
-      _borderColor = borderColor;
-}
+  //getting color
+  Color getColor(){
+    return _color;
+  }
+  
 }
 
 
@@ -45,7 +44,6 @@ class _ColorPaletteTileState extends State<ColorPaletteTile> {
             child: null,
             onPressed: () {
               widget._onColorChange(widget._color);
-              widget._changeBorderColor(widget._id);
             }));
   }
 }
