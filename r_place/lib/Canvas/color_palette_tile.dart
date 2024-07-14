@@ -6,16 +6,20 @@ class ColorPaletteTile extends StatefulWidget {
   late void Function (bool) _changeColor;
   late void Function (Color) _onColorChange;
 
-  ColorPaletteTile(Color color, void Function (bool) changeColor, void Function (Color) onColorChange){
+  ColorPaletteTile(Color color){
     _color = color;
-    _changeColor = changeColor;
-    _onColorChange = onColorChange;
   }
   @override
   State<StatefulWidget> createState() => _ColorPaletteTileState();
+
+  //setting funktions for tiles
+  setFunctions(void Function (Color) onColorChange){
+    _onColorChange = onColorChange;
+  }
 }
 
 class _ColorPaletteTileState extends State <ColorPaletteTile>{
+
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
@@ -25,7 +29,7 @@ class _ColorPaletteTileState extends State <ColorPaletteTile>{
                 backgroundColor: widget._color),
             child: null,
             onPressed: () {
-              widget._onColorChange(Colors.white);
+              widget._onColorChange(widget._color);
             });
   }
 }
