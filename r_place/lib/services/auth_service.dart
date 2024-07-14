@@ -20,4 +20,22 @@ class AuthService {
       throw Exception(error.code);
     }
   }
+
+  // Method to register a user by using their email and a wish password
+  Future<UserCredential> registerWithEmailAndPassword(
+      String email, String password) async {
+    // Try-block which creates a new user with their email and self-made
+    // password by using the createUserWithEmailAndPassword method from
+    // firebase package
+    try {
+      UserCredential userCredential = await _firebaseAuth
+          .createUserWithEmailAndPassword(email: email, password: password);
+      // returns the created user credentials
+      return userCredential;
+      // If an error occurs an exception will be thrown with the specific error
+      // code
+    } on FirebaseAuthException catch (error) {
+      throw Exception(error.code);
+    }
+  }
 }
