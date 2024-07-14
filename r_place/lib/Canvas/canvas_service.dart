@@ -13,6 +13,7 @@ class _CanvasServiceState extends State<CanvasService> {
   //late List<CanvasTile> _grid = List.filled(100, CanvasTile());
   final List <CanvasTile> _grid = List.generate(100, (index) => CanvasTile(ID: index));
   Color _currentColor = Colors.white;
+  int _currentColorIndex = 0;
 
   @override
   void initState() {

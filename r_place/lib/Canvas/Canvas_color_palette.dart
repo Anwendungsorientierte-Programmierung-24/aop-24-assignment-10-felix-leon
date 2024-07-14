@@ -31,15 +31,33 @@ class _ColorPaletteState extends State<ColorPalette> {
   void initState() {
     super.initState();
     _fillList();
+    _setButtonsID();
+    _setSelectedBorder(0);
   }
 
   //filling the tile list with funtions
   _fillList() {
     setState(() {
       for (int i = 0; i < _tiles.length; i++) {
-        _tiles[i].setFunctions(widget._onColorChange);
+        _tiles[i].setFunctions(widget._onColorChange, _setSelectedBorder);
       }
     });
+  }
+
+  //setting id for color buttons
+  _setButtonsID(){
+    setState(() {
+      for (int i = 0; i < _tiles.length; i++){
+        _tiles[i].setID(i);
+      }
+    });
+  }
+
+  _setSelectedBorder(int id){
+    for (int i = 0; i < _tiles.length; i++){
+      if (i == id) _tiles[id].setBorderColor(Colors.amber);
+      else _tiles[id].setBorderColor(Colors.white);
+    }
   }
 
   @override
