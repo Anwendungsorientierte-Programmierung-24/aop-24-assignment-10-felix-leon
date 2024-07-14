@@ -23,9 +23,16 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      theme: ThemeData(
+        textSelectionTheme: const TextSelectionThemeData(
+          cursorColor: Color.fromARGB(255, 5, 33, 248),
+          selectionColor: Color.fromARGB(255, 5, 33, 248),
+          selectionHandleColor: Color.fromARGB(255, 5, 33, 248),
+        ),
+      ),
       debugShowCheckedModeBanner: false,
-      home: LoginScreen(),
+      home: const LoginScreen(),
     );
   }
 }
