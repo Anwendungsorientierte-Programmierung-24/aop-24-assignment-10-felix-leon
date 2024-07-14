@@ -5,6 +5,8 @@ import 'package:r_place/Canvas/Canvas_color_palette.dart';
 import 'package:r_place/Canvas/canvas_display.dart';
 import 'package:r_place/Canvas/canvas_tile.dart';
 import 'package:r_place/Canvas/firebase_service.dart';
+import 'package:r_place/screens/login_screen.dart';
+import 'package:r_place/services/auth_service.dart';
 
 class CanvasService extends StatefulWidget {
   FirebaseFirestore db = FirebaseFirestore.instance;
@@ -17,11 +19,31 @@ class _CanvasServiceState extends State<CanvasService> {
   final List <CanvasTile> _grid = List.generate(100, (index) => CanvasTile(ID: index.toString()));
   Color _currentColor = Colors.white;
   Color _selectedColor = Colors.black;
+  FirebaseService fbService = FirebaseService();
 
   @override
   void initState() {
     super.initState();
     fillCanvasTiles();
+  }
+
+  void _navigateToLoginScree() {
+    Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => const LoginScreen()));
+  }
+
+  Future<void> _logout() async {
+    final authService = Provider.of<AuthService>(context, listen: false);
+    try {
+      await authService.signOut();
+      _navigateToLoginScree();
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(
+          e.toString(),
+        ),
+      ));
+    }
   }
 
   @override
@@ -157,7 +179,6 @@ class _CanvasServiceState extends State<CanvasService> {
       ),
     );
   }
-}
 
   //changing color of spesific tile
   upDateTile(int index){
