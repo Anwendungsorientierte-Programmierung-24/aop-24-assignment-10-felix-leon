@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
+import 'package:r_place/screens/registration_screen.dart';
 import 'package:r_place/services/auth_service.dart';
 
 // class represents the login screen
@@ -20,14 +21,17 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _passwordController = TextEditingController();
 
   // Method to login with user credentials using the signIn method from
-  //AuthService class
+  // AuthService class
   Future<void> _login() async {
     // Instance of authService by using the Provider
     final authService = Provider.of<AuthService>(context, listen: false);
     // Try-block which uses the signIn method of the AuthService class and the
     // texts from the TextEditinControllers as input
+    // If login was successful the user will be directed to the CanvasScreen by
+    // using zhe _navigateToCanvasScreen method
     try {
       await authService.signIn(_emailController.text, _passwordController.text);
+      _navigateToCanvasScreen();
       // Navigation zum Canvas hinzufügen
     } catch (e) {
       // If sign in doesnt work a Snackbar will be displayed showing the
@@ -38,6 +42,26 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       ));
     }
+  }
+
+  // Method to navigate to the RegistrationScreen
+  Future<void> _navigateToRegistrationScreen() async {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const RegistrationScreen(),
+      ),
+    );
+  }
+
+  // Method to navigate to the CanvasScreen
+  Future<void> _navigateToCanvasScreen() async {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const Placeholder(),
+      ),
+    );
   }
 
   @override
@@ -142,8 +166,11 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 // TextButton to navigate to the registerscreen
                 TextButton(
-                  // Navigation zur Registrierseite hinzufügen
-                  onPressed: () {},
+                  // _navigateToRegistrationSceen method to  navigate to the
+                  // RegistrationScreen
+                  onPressed: () {
+                    _navigateToRegistrationScreen();
+                  },
                   child: const Text('Create Account'),
                 ),
               ],
