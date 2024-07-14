@@ -15,6 +15,12 @@ class _CanvasServiceState extends State<CanvasService> {
   Color _currentColor = Colors.white;
 
   @override
+  void initState() {
+    super.initState();
+    fillCanvasTiles();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
@@ -30,6 +36,7 @@ class _CanvasServiceState extends State<CanvasService> {
   upDateTile(int index){
     setState(() {
       _grid[index] = CanvasTile(ID: index, color: _currentColor);
+      _grid[index].setOnSelected(upDateTile);
     });
   }
 
