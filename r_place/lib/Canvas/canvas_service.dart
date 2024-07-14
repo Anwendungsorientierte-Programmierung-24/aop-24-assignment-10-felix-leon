@@ -15,10 +15,22 @@ class _CanvasServiceState extends State<CanvasService> {
   final List <CanvasTile> _grid = List.generate(100, (index) => CanvasTile(ID: index));
   Color _currentColor = Colors.white;
 
+  final city = <String, String>{
+  "name": "Los Angeles",
+  "state": "CA",
+  "country": "USA"
+};
+
+  void loadData(){
+    widget.db.collection("data").doc("1").set(city);
+    }
+
+
   @override
   void initState() {
     super.initState();
     fillCanvasTiles();
+    loadData();
   }
 
   @override
