@@ -1,9 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:r_place/Canvas/Canvas_color_palette.dart';
 import 'package:r_place/Canvas/canvas_display.dart';
 import 'package:r_place/Canvas/canvas_tile.dart';
 
 class CanvasService extends StatefulWidget {
+  FirebaseFirestore db = FirebaseFirestore.instance;
   @override
   State<CanvasService> createState() => _CanvasServiceState();
 }
