@@ -1,33 +1,21 @@
-import 'package:flutter/material.dart';
+import 'dart:ui';
 
-class CanvasTile extends StatelessWidget {
-  late String ID;
-  late Color color;
-  late void Function (int) _onSelected;
-  CanvasTile({ String ID = "0", Color color = Colors.green}){
-    color = color;
-    ID = ID;
+class Pixel {
+  final String id;
+  final Color color;
+
+  Pixel({required this.id, required this.color});
+
+  factory Pixel.fromMap(Map<String, dynamic> data, String documentId) {
+    return Pixel(
+      id: documentId,
+      color: Color(data['color']),
+    );
   }
 
   Map<String, dynamic> toMap() {
     return {
       'color': color.value,
     };
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-        style: ElevatedButton.styleFrom(
-            shape: BeveledRectangleBorder(), backgroundColor: color),
-        child: null,
-        onPressed: () {
-          _onSelected(ID as int);
-        });
-  }
-
-  //setting canvas OnSelected Funktion
-  setOnSelected(void Function (int) onSelected){
-    	_onSelected = onSelected;
   }
 }

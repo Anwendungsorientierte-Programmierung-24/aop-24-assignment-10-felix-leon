@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+/**mport 'package:flutter/material.dart';
 import 'package:r_place/Canvas/canvas_tile.dart';
 import 'package:r_place/Canvas/firebase_service.dart';
 
@@ -43,3 +43,5 @@ class _CanvasDisplayState extends State<CanvasDisplay> {
     );
   }
 }
+
+*/

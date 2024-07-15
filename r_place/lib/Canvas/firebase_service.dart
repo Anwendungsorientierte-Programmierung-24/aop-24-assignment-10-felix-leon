@@ -2,15 +2,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:r_place/Canvas/canvas_tile.dart';
 
-class FirebaseService extends ChangeNotifier {
+class PixelService extends ChangeNotifier {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
-  Stream<List<CanvasTile>> getPixels() {
+  Stream<List<Pixel>> getPixels() {
     return _firestore.collection('pixels').snapshots().map((snapshot) {
       return snapshot.docs.map((doc) {
         final data = doc.data();
-        return CanvasTile(
-          ID: doc.id,
+        return Pixel(
+          id: doc.id,
           color: Color(data['color']),
         );
       }).toList();

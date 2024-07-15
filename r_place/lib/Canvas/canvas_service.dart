@@ -1,31 +1,22 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:r_place/Canvas/Canvas_color_palette.dart';
-import 'package:r_place/Canvas/canvas_display.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:r_place/Canvas/canvas_tile.dart';
 import 'package:r_place/Canvas/firebase_service.dart';
 import 'package:r_place/screens/login_screen.dart';
 import 'package:r_place/services/auth_service.dart';
 
-class CanvasService extends StatefulWidget {
-  FirebaseFirestore db = FirebaseFirestore.instance;
+class CanvasScreen extends StatefulWidget {
+  const CanvasScreen({Key? key}) : super(key: key);
+
   @override
-  State<CanvasService> createState() => _CanvasServiceState();
+  _CanvasScreenState createState() => _CanvasScreenState();
 }
 
-class _CanvasServiceState extends State<CanvasService> {
-  //attributes for Canvas Service
-  final List <CanvasTile> _grid = List.generate(100, (index) => CanvasTile(ID: index.toString()));
-  Color _currentColor = Colors.white;
+class _CanvasScreenState extends State<CanvasScreen> {
   Color _selectedColor = Colors.black;
-  FirebaseService fbService = FirebaseService();
-
-  @override
-  void initState() {
-    super.initState();
-    fillCanvasTiles();
-  }
 
   void _navigateToLoginScree() {
     Navigator.of(context).pushReplacement(
@@ -47,9 +38,8 @@ class _CanvasServiceState extends State<CanvasService> {
   }
 
   @override
-   @override
   Widget build(BuildContext context) {
-    final pixelService = Provider.of<FirebaseService>(context);
+    final pixelService = Provider.of<PixelService>(context);
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -66,7 +56,7 @@ class _CanvasServiceState extends State<CanvasService> {
           actions: [
             IconButton(
               onPressed: () {
-                //_logout();
+                _logout();
               },
               icon: const Icon(Icons.logout),
             ),
@@ -76,7 +66,7 @@ class _CanvasServiceState extends State<CanvasService> {
           children: [
             const SizedBox(height: 50.0),
             Expanded(
-              child: StreamBuilder<List<CanvasTile>>(
+              child: StreamBuilder<List<Pixel>>(
                 stream: pixelService.getPixels(),
                 builder: (context, snapshot) {
                   if (!snapshot.hasData) {
@@ -92,8 +82,8 @@ class _CanvasServiceState extends State<CanvasService> {
                     itemBuilder: (context, index) {
                       final pixelId = index.toString();
                       final pixel = pixels.firstWhere(
-                        (pixel) => pixel.ID == pixelId,
-                        orElse: () => CanvasTile(ID: pixelId, color: Colors.white),
+                        (pixel) => pixel.id == pixelId,
+                        orElse: () => Pixel(id: pixelId, color: Colors.white),
                       );
                       return GestureDetector(
                         onTap: () async {
@@ -178,29 +168,5 @@ class _CanvasServiceState extends State<CanvasService> {
         ),
       ),
     );
-  }
-
-  //changing color of spesific tile
-  upDateTile(int index){
-    setState(() {
-      _grid[index] = CanvasTile(ID: index.toString(), color: _currentColor);
-      _grid[index].setOnSelected(upDateTile);
-    });
-  }
-
-  //changing the Color of one pixel
-  updateColor(Color color) {
-    setState(() {
-      _currentColor = color;
-    });
-  }
-
-  //giving onColorChange to every CanvasTile
-  void fillCanvasTiles(){
-    setState(() {
-      for (int i = 0; i < _grid.length; i++){
-        _grid[i].setOnSelected(upDateTile); 
-      }
-    });
   }
 }

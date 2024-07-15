@@ -38,4 +38,6 @@ class AuthService {
       throw Exception(error.code);
     }
   }
+
+  signOut() {}
 }
