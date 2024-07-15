@@ -1,7 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:r_place/Canvas/pixel_service.dart';
 import 'package:r_place/firebase_options.dart';
 import 'package:r_place/screens/login_screen.dart';
 import 'package:r_place/services/auth_service.dart';
@@ -12,8 +12,14 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // Uses the default options for firebase
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  runApp(Provider(
-    create: (context) => AuthService(),
+  runApp(MultiProvider(
+    providers: [
+      Provider<AuthService>(
+      create: (context) => AuthService(),
+      ),
+      Provider <PixelService>(
+        create: (context) => PixelService())
+    ],
     child: const MainApp(),
   ));
 }
