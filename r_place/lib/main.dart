@@ -8,7 +8,6 @@ import 'package:r_place/services/auth_service.dart';
 
 // Changed to Future to use firebase
 Future<void> main() async {
-  Provider.debugCheckInvalidValueType = null;
   // Ensures that the Widgets are initialized
   WidgetsFlutterBinding.ensureInitialized();
   // Uses the default options for firebase
