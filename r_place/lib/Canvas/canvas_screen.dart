@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'dart:ui';
-import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:r_place/Canvas/pixel.dart';
 import 'package:r_place/Canvas/pixel_service.dart';
 import 'package:r_place/screens/login_screen.dart';
@@ -18,11 +15,13 @@ class CanvasScreen extends StatefulWidget {
 class _CanvasScreenState extends State<CanvasScreen> {
   Color _selectedColor = Colors.black;
 
+  //leading to login with saved credentials
   void _navigateToLoginScree() {
     Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (context) => const LoginScreen()));
   }
 
+  //leading to login with logout
   Future<void> _logout() async {
     final authService = Provider.of<AuthService>(context, listen: false);
     try {

@@ -6,6 +6,7 @@ class Pixel {
 
   Pixel({required this.id, required this.color});
 
+  //decyfering form database
   factory Pixel.fromMap(Map<String, dynamic> data, String documentId) {
     return Pixel(
       id: documentId,
@@ -13,6 +14,7 @@ class Pixel {
     );
   }
 
+  //converting to map for loading in database
   Map<String, dynamic> toMap() {
     return {
       'color': color.value,
