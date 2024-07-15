@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:r_place/Canvas/pixel.dart';
 
-class PixelService  {
+class PixelService with ChangeNotifier {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   //catchung Stream of Pixels form Database
