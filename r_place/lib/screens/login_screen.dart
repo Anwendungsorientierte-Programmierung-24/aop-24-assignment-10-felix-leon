@@ -72,6 +72,7 @@ class _LoginScreenState extends State<LoginScreen> {
       child: Scaffold(
         // AppBar displays the title of the app
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           backgroundColor: const Color.fromARGB(255, 5, 33, 248),
           centerTitle: true,
           title: const Text(
@@ -89,6 +90,9 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Center(
             child: Column(
               children: [
+                const SizedBox(
+                  height: 30.0,
+                ),
                 // Padding for better placement of the image
                 Padding(
                   padding: const EdgeInsets.all(12.0),
@@ -103,6 +107,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Image.asset('assets/login_screen.jpg'),
                   ),
                 ),
+                const SizedBox(
+                  height: 50.0,
+                ),
                 // SizedBox with the TextField for the emailinput
                 SizedBox(
                   // Mediaquery for better placement
@@ -113,13 +120,20 @@ class _LoginScreenState extends State<LoginScreen> {
                     keyboardType: TextInputType.emailAddress,
                     // styled by Inputdecoration
                     decoration: const InputDecoration(
-                        hintText: 'Email',
-                        fillColor: Color.fromARGB(255, 5, 33, 248),
-                        focusColor: Color.fromARGB(255, 5, 33, 248),
-                        hoverColor: Color.fromARGB(255, 5, 33, 248),
-                        focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                                color: Color.fromARGB(255, 5, 33, 248)))),
+                      prefixIcon: Padding(
+                        padding: EdgeInsets.only(bottom: 8.0),
+                        child: Icon(Icons.email),
+                      ),
+                      hintText: 'Email',
+                      fillColor: Color.fromARGB(255, 5, 33, 248),
+                      focusColor: Color.fromARGB(255, 5, 33, 248),
+                      hoverColor: Color.fromARGB(255, 5, 33, 248),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Color.fromARGB(255, 5, 33, 248),
+                        ),
+                      ),
+                    ),
                     cursorColor: const Color.fromARGB(255, 5, 33, 248),
                     cursorErrorColor: const Color.fromARGB(255, 5, 33, 248),
                   ),
@@ -138,6 +152,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     obscureText: true,
                     // styled by Inputdecoration
                     decoration: const InputDecoration(
+                        prefixIcon: Padding(
+                          padding: EdgeInsets.only(bottom: 8.0),
+                          child: Icon(Icons.lock),
+                        ),
                         hintText: 'Passwort',
                         fillColor: Color.fromARGB(255, 5, 33, 248),
                         focusColor: Color.fromARGB(255, 5, 33, 248),
@@ -156,23 +174,57 @@ class _LoginScreenState extends State<LoginScreen> {
                 // ElevatedButton uses _login method to login in the app with
                 // the given input
                 ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      side: const BorderSide(color: Colors.white),
+                      backgroundColor: const Color.fromARGB(255, 5, 33, 248),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(6.0),
+                      ),
+                      minimumSize: const Size(220.0, 40.0)),
                   onPressed: () {
                     _login();
                   },
-                  child: const Text('Login'),
+                  child: const Text(
+                    'Login',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
                 // SizedBox to create some space
                 const SizedBox(
-                  width: 30.0,
+                  width: 50.0,
                 ),
-                // TextButton to navigate to the registerscreen
-                TextButton(
-                  // _navigateToRegistrationSceen method to  navigate to the
-                  // RegistrationScreen
-                  onPressed: () {
-                    _navigateToRegistrationScreen();
-                  },
-                  child: const Text('Create Account'),
+                // Padding Widget for better placement
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 20.0),
+                  // Row widget with a information text and gesture detection to
+                  // navigate to the RegistrationScreen
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(
+                        "Don't have an account? ",
+                        style: TextStyle(
+                          fontSize: 18.0,
+                        ),
+                      ),
+                      // GestureDetector to navigate to the registerscreen
+                      GestureDetector(
+                        onTap: _navigateToRegistrationScreen,
+                        child: const Text(
+                          'Create one here!',
+                          style: TextStyle(
+                            color: Colors.blue,
+                            decoration: TextDecoration.underline,
+                            fontSize: 18.0,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
