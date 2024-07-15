@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
-import 'package:r_place/Canvas/canvas_service.dart';
+import 'package:r_place/Canvas/canvas_screen.dart';
 import 'package:r_place/screens/registration_screen.dart';
 import 'package:r_place/services/auth_service.dart';
 

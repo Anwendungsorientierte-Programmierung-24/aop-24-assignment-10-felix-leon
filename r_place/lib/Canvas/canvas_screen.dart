@@ -3,8 +3,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:r_place/Canvas/canvas_tile.dart';
-import 'package:r_place/Canvas/firebase_service.dart';
+import 'package:r_place/Canvas/pixel.dart';
+import 'package:r_place/Canvas/pixel_service.dart';
 import 'package:r_place/screens/login_screen.dart';
 import 'package:r_place/services/auth_service.dart';
 
