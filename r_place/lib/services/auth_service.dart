@@ -1,7 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 
 // class represents the Authenticationservice for the app
-class AuthService {
+class AuthService with ChangeNotifier {
   // variables of the class
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
@@ -37,5 +38,9 @@ class AuthService {
     } on FirebaseAuthException catch (error) {
       throw Exception(error.code);
     }
+  }
+
+  Future<void> signOut() async {
+    await _firebaseAuth.signOut();
   }
 }
