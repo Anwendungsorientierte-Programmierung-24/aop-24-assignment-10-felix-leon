@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:r_place/Canvas/canvas_screen.dart';
+import 'package:r_place/main.dart';
 import 'package:r_place/screens/registration_screen.dart';
 import 'package:r_place/services/auth_service.dart';
+import 'package:r_place/services/connection_service.dart';
 
 // class represents the login screen
 class LoginScreen extends StatefulWidget {
@@ -20,6 +22,50 @@ class _LoginScreenState extends State<LoginScreen> {
   // class variables
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  bool _isConnected = false;
+
+  // Override of initState method to check the connection status by using the
+  // ConnectionService
+  @override
+  void initState() {
+    super.initState();
+    // Set the connection status to the current
+    final connectionService =
+        Provider.of<ConnectionService>(context, listen: false);
+    connectionService.status.listen((isConnected) {
+      setState(() {
+        _isConnected = isConnected;
+      });
+
+      // if the connection is lost a snackbar with an error will be shown
+      if (!_isConnected) {
+        _showErrorSnackBar();
+        // If the connection is restored another snackBar will be shown
+      } else {
+        _showSnackBar();
+      }
+    });
+  }
+
+  // Method displays a snackBar
+  void _showSnackBar() {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        backgroundColor: Colors.green,
+        content: Text('Internet connection restored.'),
+      ),
+    );
+  }
+
+  // Method displays a snackBar
+  void _showErrorSnackBar() {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        backgroundColor: Colors.red,
+        content: Text('No internet connection. Cannot log in.'),
+      ),
+    );
+  }
 
   // Method to login with user credentials using the signIn method from
   // AuthService class
@@ -38,8 +84,10 @@ class _LoginScreenState extends State<LoginScreen> {
       // If sign in doesnt work a Snackbar will be displayed showing the
       // specific error
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        backgroundColor: Colors.red,
         content: Text(
           e.toString(),
+          style: TextStyle(color: Colors.white),
         ),
       ));
     }
