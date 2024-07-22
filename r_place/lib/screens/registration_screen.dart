@@ -41,8 +41,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
+          backgroundColor: Colors.red,
           content: Text(
-            'Error creating account: $e',
+            e.toString(),
+            style: TextStyle(color: Colors.white),
           ),
         ),
       );

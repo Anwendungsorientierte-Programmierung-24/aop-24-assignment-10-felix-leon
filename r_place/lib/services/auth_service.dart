@@ -18,7 +18,7 @@ class AuthService with ChangeNotifier {
       // If theres a problem the method throws an exception and returns the error
       // code
     } on FirebaseAuthException catch (error) {
-      throw Exception(error.code);
+      throw error.code;
     }
   }
 
@@ -36,10 +36,11 @@ class AuthService with ChangeNotifier {
       // If an error occurs an exception will be thrown with the specific error
       // code
     } on FirebaseAuthException catch (error) {
-      throw Exception(error.code);
+      throw error.code;
     }
   }
 
+  // Sign out method which uses the signOut method from firebase_auth package
   Future<void> signOut() async {
     await _firebaseAuth.signOut();
   }
