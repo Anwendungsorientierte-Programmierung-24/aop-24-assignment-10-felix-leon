@@ -155,7 +155,7 @@ class _CanvasScreenState extends State<CanvasScreen> {
     final pixelService = Provider.of<PixelService>(context, listen: false);
     for (var pixel in pixels) {
       // Update each pixel to white
-      await pixelService.updatePixel(pixel.id, Colors.white, context);
+      await pixelService.updatePixel(pixel.id, Colors.white);
     }
   }
 
@@ -208,7 +208,7 @@ class _CanvasScreenState extends State<CanvasScreen> {
                   height: MediaQuery.of(context).size.width,
                   child: StreamBuilder<List<Pixel>>(
                     // Stream to get pixel data
-                    stream: pixelService.getPixels(context),
+                    stream: pixelService.getPixels(),
                     builder: (context, snapshot) {
                       // Loading indicator
                       if (snapshot.hasError) {
@@ -285,7 +285,7 @@ class _CanvasScreenState extends State<CanvasScreen> {
                                   // Update pixel color on tap by using the
                                   // updatePixel method from PixelService
                                   await pixelService.updatePixel(
-                                      pixelId, _selectedColor, context);
+                                      pixelId, _selectedColor);
                                 } catch (e) {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
@@ -351,7 +351,7 @@ class _CanvasScreenState extends State<CanvasScreen> {
                       children: [
                         StreamBuilder<List<Pixel>>(
                           // Stream to get pixel data for reset.
-                          stream: pixelService.getPixels(context),
+                          stream: pixelService.getPixels(),
                           builder: (context, snapshot) {
                             // Loading indicator.
                             if (!snapshot.hasData) {
