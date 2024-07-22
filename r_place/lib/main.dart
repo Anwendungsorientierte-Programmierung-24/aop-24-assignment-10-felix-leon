@@ -1,13 +1,10 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:r_place/Canvas/canvas_screen.dart';
 import 'package:r_place/Canvas/pixel_service.dart';
 import 'package:r_place/firebase_options.dart';
 import 'package:r_place/screens/login_screen.dart';
 import 'package:r_place/services/auth_service.dart';
-import 'package:r_place/services/connection_service.dart';
 
 // Changed to Future to use firebase
 Future<void> main() async {
@@ -16,21 +13,16 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // Uses the default options for firebase
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  runApp(
-    // Multiprovider to detect changes of the PixelService and the AuthService
-    MultiProvider(
-      providers: [
-        // ChangeNotifier to listen to changes of both services and Provider to
-        // check the connection status
-        ChangeNotifierProvider(create: (context) => AuthService()),
-        ChangeNotifierProvider(create: (_) => PixelService()),
-        Provider<ConnectionService>(
-          create: (_) => ConnectionService(),
-        )
-      ],
-      child: const MainApp(),
-    ),
-  );
+  runApp(MultiProvider(
+    providers: [
+      Provider<AuthService>(
+      create: (context) => AuthService(),
+      ),
+      Provider <PixelService>(
+        create: (context) => PixelService())
+    ],
+    child: const MainApp(),
+  ));
 }
 
 class MainApp extends StatelessWidget {
@@ -38,21 +30,9 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      // Streambuilder to listen for authentication state changes
-      home: StreamBuilder(
-        stream: FirebaseAuth.instance.authStateChanges(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            // if the user is authenticated the CanvasScreen pops up
-            return const CanvasScreen();
-          } else {
-            // if the user is not authenticated, the LoginScreen pops up
-            return const LoginScreen();
-          }
-        },
-      ),
+      home: LoginScreen(),
     );
   }
 }
