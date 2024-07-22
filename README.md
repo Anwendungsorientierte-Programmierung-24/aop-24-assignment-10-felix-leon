@@ -105,7 +105,7 @@ Aufgaben Teammitglied 2: Felix Vogelsang
 - [x] Der "Canvas" besteht aus 10x10 (oder mehr) "Pixeln", die durch Klick eingefärbt werden können.
 - [x] Änderungen am Canvas sind für alle User der App, auch auf verschiedenen Smartphones sofort sichtbar (sofern natürlich eine Internetverbindung besteht).
 - [x] Die App soll durchwegs korrektes Error Handling umsetzen. Egal ob fehlende Internetverbindung, falsches Passwort beim Login, etc. Der User soll stets bei Problemen mit nicht-technischen und klar verständlichen Beschreibungen über diese informiert werden.
-- [x] Im Repository findet sich neben dem Code eine APK-Datei der fertigen App
+- [] Im Repository findet sich neben dem Code eine APK-Datei der fertigen App
 - [x] Alle in der App angezeigten Widgets und Screens sind ansprechend formatiert (Text "klebt" nicht am Rand, etc.).
 - [x] Die App darf nicht abstürzen oder "einfrieren".
 - [x] Der Code ist modular aufgebaut, angemessen kommentiert und korrekt formatiert. Toter oder doppelter Code wurde vor der Abgabe entfernt.
