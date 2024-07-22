@@ -81,33 +81,41 @@ Die Aufgabenverteilung im Team muss im folgenden Abschnitt dokumentiert werden.
 ## Dokumentation der Aufgabenverteilung
 
 Aufgaben Teammitglied 1: Leon Maurer
-- LogIn
+- LoginScreen, RegistrationScreen, ConnectionService
+- LoginScreen: Einloggen per zuvor registrierter Emailadresse und Passwort. Darauf folgende Navigation zum CanvasScreen. Fehlermeldung bei falscher      Emailadresse oder Passwort und bei fehlender Internetverbindung.
+- RegistrationScreen: Registrieren mit einer Emailadresse und Passwort möglich. Danach Navigation zum LoginScreen. Fehlermeldung bei falscher      Emailadresse oder Passwort und bei fehlender Internetverbindung.
+- ConnectionService: Überprüft ob eine Internetverbindung mit WIFI oder dem Netz besteht falls nicht funktioniert der Login oder Registrierung nicht und es kommt eine SnackBar. Wird die Internetverbindun erneut hergestellt erscheint ebenfalls eine SnackBar
+- Firbase Einrichtung.
 
 Aufgaben Teammitglied 2: Felix Vogelsang
-- Canvas
+- CanvasScreen, PixelService und Pixel Klasse
+- CanvasScreen: gemeinsames Gestalten eines PixelScreens mit unterschiedlichen Farben. bei fehlender Internetverbindung erscheint eine SnackBar und bei Wiederherstellung ebenfalls.
+- PixelService: Service um die Pixel des Canvas zu verwalten. Pixelservice ermöglicht das holen der Farbinformationen der Pixel und das Einfärben der Pixel.
+- Pixel Klasse: Stellt die Datenstruktur eines Pixels dar mit Farbinformation und id zur eindeutigen idetifizierung in Firestore.
+- Firestore: Erstellung der Datenbank zur Speicherung der Pixel.
 
 
 ## Checkliste für das Übungsblatt
 
-- [ ] In der App kann man sich als User mit E-Mail Adresse und Passwort registrieren.
-- [ ] Nach Registrierung ist auch ein Login mit den gleichen Daten möglich.
-- [ ] Der Canvas Screen ist nur als eingeloggter User erreichbar.
-- [ ] Auf dem Canvas Screen soll man sich auch wieder aus der App ausloggen können. 
-- [ ] Es gibt eine Farbpalette mit mehreren Farben. Es ist im UI klar ersichtlich, welche Farbe gerade ausgewählt ist.
-- [ ] Der "Canvas" besteht aus 10x10 (oder mehr) "Pixeln", die durch Klick eingefärbt werden können.
-- [ ] Änderungen am Canvas sind für alle User der App, auch auf verschiedenen Smartphones sofort sichtbar (sofern natürlich eine Internetverbindung besteht).
-- [ ] Die App soll durchwegs korrektes Error Handling umsetzen. Egal ob fehlende Internetverbindung, falsches Passwort beim Login, etc. Der User soll stets bei Problemen mit nicht-technischen und klar verständlichen Beschreibungen über diese informiert werden.
-- [ ] Im Repository findet sich neben dem Code eine APK-Datei der fertigen App
-- [ ] Alle in der App angezeigten Widgets und Screens sind ansprechend formatiert (Text "klebt" nicht am Rand, etc.).
-- [ ] Die App darf nicht abstürzen oder "einfrieren".
-- [ ] Der Code ist modular aufgebaut, angemessen kommentiert und korrekt formatiert. Toter oder doppelter Code wurde vor der Abgabe entfernt.
-- [ ] Die Aufgabenverteilung im Team ist fair (beide Teammitglieder erledigen ca. 50% der Arbeit. **Nicht**: _"A hat nur das Design gemacht und B den Rest"_).
-- [ ] Die Aufgabenverteilung im Team wurde in dieser Readme-Datei dokumentiert.
-- [ ] Alle Features wurden auf eigenen Feature-Branches implementiert.
-- [ ] Für Branches mit fertig implementierten Features wurden Pull-Requests gestellt, aber nicht selbst beantwortet.
-- [ ] Alle relevanten Branches wurden auf den main-Branch gemerged (**Wichtig:** Nur der Code auf diesem Branch wird bewertet!).
-- [ ] Alle Änderungen am Code sind durch regelmäßige Commits mit aussagekräftigen Commit-Messages dokumentiert und auf das Remote Repository auf GitHub gepusht worden.
-- [ ] Im User Interface dürfen keine Overflow Warnungen (orange Warnstreifen) angezeigt werden.
+- [x] In der App kann man sich als User mit E-Mail Adresse und Passwort registrieren.
+- [x] Nach Registrierung ist auch ein Login mit den gleichen Daten möglich.
+- [x] Der Canvas Screen ist nur als eingeloggter User erreichbar.
+- [x] Auf dem Canvas Screen soll man sich auch wieder aus der App ausloggen können. 
+- [x] Es gibt eine Farbpalette mit mehreren Farben. Es ist im UI klar ersichtlich, welche Farbe gerade ausgewählt ist.
+- [x] Der "Canvas" besteht aus 10x10 (oder mehr) "Pixeln", die durch Klick eingefärbt werden können.
+- [x] Änderungen am Canvas sind für alle User der App, auch auf verschiedenen Smartphones sofort sichtbar (sofern natürlich eine Internetverbindung besteht).
+- [x] Die App soll durchwegs korrektes Error Handling umsetzen. Egal ob fehlende Internetverbindung, falsches Passwort beim Login, etc. Der User soll stets bei Problemen mit nicht-technischen und klar verständlichen Beschreibungen über diese informiert werden.
+- [] Im Repository findet sich neben dem Code eine APK-Datei der fertigen App
+- [x] Alle in der App angezeigten Widgets und Screens sind ansprechend formatiert (Text "klebt" nicht am Rand, etc.).
+- [x] Die App darf nicht abstürzen oder "einfrieren".
+- [x] Der Code ist modular aufgebaut, angemessen kommentiert und korrekt formatiert. Toter oder doppelter Code wurde vor der Abgabe entfernt.
+- [x] Die Aufgabenverteilung im Team ist fair (beide Teammitglieder erledigen ca. 50% der Arbeit. **Nicht**: _"A hat nur das Design gemacht und B den Rest"_).
+- [x] Die Aufgabenverteilung im Team wurde in dieser Readme-Datei dokumentiert.
+- [x] Alle Features wurden auf eigenen Feature-Branches implementiert.
+- [x] Für Branches mit fertig implementierten Features wurden Pull-Requests gestellt, aber nicht selbst beantwortet.
+- [x] Alle relevanten Branches wurden auf den main-Branch gemerged (**Wichtig:** Nur der Code auf diesem Branch wird bewertet!).
+- [x] Alle Änderungen am Code sind durch regelmäßige Commits mit aussagekräftigen Commit-Messages dokumentiert und auf das Remote Repository auf GitHub gepusht worden.
+- [x] Im User Interface dürfen keine Overflow Warnungen (orange Warnstreifen) angezeigt werden.
 
 
 ## Optionale Erweiterungen

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:r_place/Canvas/canvas_screen.dart';
 import 'package:r_place/screens/registration_screen.dart';
 import 'package:r_place/services/auth_service.dart';
+import 'package:r_place/services/connection_service.dart';
 
 // class represents the login screen
 class LoginScreen extends StatefulWidget {
@@ -20,6 +20,58 @@ class _LoginScreenState extends State<LoginScreen> {
   // class variables
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  bool _isConnected = false;
+  bool _isSnackbarVisible = false;
+
+  // Override of initState method to check the connection status by using the
+  // ConnectionService
+  @override
+  void initState() {
+    super.initState();
+    // Set the connection status to the current
+    final connectionService =
+        Provider.of<ConnectionService>(context, listen: false);
+    connectionService.status.listen((isConnected) {
+      // if the connection is lost a snackbar with an error will be shown
+      if (_isConnected != isConnected) {
+        setState(() {
+          _isConnected = isConnected;
+        });
+        _showConnectionStatusSnackbar(isConnected);
+      }
+    });
+  }
+
+  // Method to display a snackbar with a custom message
+  void _showConnectionStatusSnackbar(bool isConnected) {
+    if (!_isSnackbarVisible) {
+      final message = isConnected
+          ? 'Internet connection restored.'
+          : 'No internet connection. Cannot log in.';
+      final backgroundColor = isConnected ? Colors.green : Colors.red;
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: backgroundColor,
+          content: Text(message),
+          duration: const Duration(seconds: 2),
+        ),
+      );
+
+      setState(() {
+        _isSnackbarVisible = true;
+      });
+
+      // Reset snackbar visibility flag after the snackbar duration
+      Future.delayed(const Duration(seconds: 2), () {
+        if (mounted) {
+          setState(() {
+            _isSnackbarVisible = false;
+          });
+        }
+      });
+    }
+  }
 
   // Method to login with user credentials using the signIn method from
   // AuthService class
@@ -38,8 +90,10 @@ class _LoginScreenState extends State<LoginScreen> {
       // If sign in doesnt work a Snackbar will be displayed showing the
       // specific error
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        backgroundColor: Colors.red,
         content: Text(
           e.toString(),
+          style: TextStyle(color: Colors.white),
         ),
       ));
     }
